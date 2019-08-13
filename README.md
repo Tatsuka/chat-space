@@ -8,13 +8,14 @@
 |email|string|null: false|
 |username|string|null: false|
 ### Association
+- belongs_to :user_groups
 - has_many :posts
-- has_many :groups, through: :users_groups
+- has_many :groups, through: :user_groups
 
 ## postsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|image|null: false|
+|image|image|
 |text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
@@ -26,17 +27,18 @@
 ## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|groupname|string|null: false|
+|name|string|null: false|
 ### Association
+- belongs_to :user_groups
 - has_many  :posts
-- has_many :users, through:  :users_groups
+- has_many :users, through:  :user_groups
 
 
-## users_postsテーブル
+## user_groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |users_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :post
+- belongs_to :user
 - belongs_to :group
