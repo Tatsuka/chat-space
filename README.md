@@ -6,19 +6,19 @@
 |------|----|-------|
 |password|string|null: false|
 |email|string|null: false|
-|username|string|null: false|
+|nickname|string|null: false, index: true|
 ### Association
-- belongs_to :user_groups
+- has_many :user_groups
 - has_many :posts
 - has_many :groups, through: :user_groups
 
 ## postsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|image|
-|text|text|null: false|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|image|string|
+|text|text|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
@@ -29,16 +29,16 @@
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- belongs_to :user_groups
-- has_many  :posts
+- has_many :user_groups
+- has_many :posts
 - has_many :users, through:  :user_groups
 
 
 ## user_groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|users_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
