@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :groupes, only: [:new, :create, :edit, :update]do
     resources :messages, only: [:index, :create]
+  end
 end
