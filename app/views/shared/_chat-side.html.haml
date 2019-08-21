@@ -13,7 +13,7 @@
   .groups
     =link_to do
       .group
-        - current_user.group.each do |group|
+        - current_user.groups.each do |group|
           = link_to group_message_path(group) do
             .group__group-name
               = group.name 
