@@ -1,23 +1,15 @@
-      -# .messege
-      -#   .messege__upper-info
-      -#     %p.messege__upper-info__talker taki
-      -#     %p.messege__upper-info__date 2019/08/16(Fri) 17:09:38
-      -#   %p.messege__text 確認します
+.message
+  .messege__upper-info
+    .messege__upper-info__talker
+      = message.user.name
+    .messege__upper-info__date 
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
+  .messege__text
+    - if message.content.present?
+      .messege__text__content
+        = message.content
+    = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
 
-
-
-      .message
-        .messege__upper-info
-          .messege__upper-info__talker
-            = message.user.name
-          .messege__upper-info__date 
-            = message.created_at.strftime("%Y/%m/%d %H:%M")
-        .messege__text
-          - if message.content.present?
-            .messege__text__content
-              = message.content
-          = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
-              
 
 
 
