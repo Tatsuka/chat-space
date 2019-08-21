@@ -13,5 +13,9 @@
   .groups
     =link_to do
       .group
-        %p.group__group-name グループ①  
-        %p.group__latest-message 確認します
+        - current_user.group.each do |group|
+          = link_to group_message_path(group) do
+            .group__group-name
+              = group.name 
+            .group__latest-message
+              メッセージはまだありません
