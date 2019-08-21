@@ -12,19 +12,13 @@
       = link_to do
         .main-header__edit-btn Edit
     .messages
-      .messege
-        .messege__upper-info
-          %p.messege__upper-info__talker taki
-          %p.messege__upper-info__date 2019/08/16(Fri) 17:09:38
-        %p.messege__text 確認します
-    .form
-      %form#new_messege.new_messege{"accept-charset" => "UTF-8", :action => "/groups/3402/messages", :enctype => "multipart/form-data", :method => "post"}
-        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-        %input{:name => "authenticity_token", :type => "hidden", :value => "omMJ62/ZkfX96KW0h3cEbq85rtalrcPOlwa2N8Q4BRpVh0qS+7vSllp2PQEEVAv8Wh8fbCkhlgPpCsd7Je55QA=="}/
-        .input-box
-          %input#messege_content.input-box__text{:name => "messege[content]", :placeholder => "type a messege", :type => "text"}/
-          %label.input-box__image{:for => "messege_image"}
-            %i.fa.fa-image
-            %input#messege_image.input-box__image__file{:name => "messege[image]", :type => "file"}/
-        %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+      = render @messages
 
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'        
