@@ -1,6 +1,6 @@
 html {
   color: #000;
-  background: #FFF;
+  background: $white;
 }
 head {
   display: none;
@@ -21,7 +21,7 @@ a {
   display: none;
 }
 .flash-box {
-  color: white;
+  color: $white;
   font-size: 1rem;
   font-weight: lighter;
   text-align: center;
