@@ -43,6 +43,7 @@
       }
     } 
   }
+  
   .groups {
     height: calc(100vh - 100px);
     background-color: $side_blue_light;
@@ -52,11 +53,12 @@
     .group {
       margin-bottom: 40px;
 
-      .group__group-name{
+      .__name{
         font-size: $side_group_name;  
       }
-      .group__latest-messege {
-        font-size: $side_group_messege;
+      .__messege {
+        font-size: 11px;
+
       }
     }
   } 

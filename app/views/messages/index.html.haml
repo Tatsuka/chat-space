@@ -13,12 +13,16 @@
         .main-header__edit-btn Edit
     .messages
       = render @messages
-
+      
     .form
       = form_for [@group, @message] do |f|
         = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .__message
         .form__mask
+          .form__mask__image
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
+            .hidden
             = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form__submit'        
+        .__submit
+        = f.submit 'Send', class: 'form__submit' 
