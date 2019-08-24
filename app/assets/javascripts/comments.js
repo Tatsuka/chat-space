@@ -23,6 +23,8 @@ $(document).on('turbolinks:load',function(){
   
  $('#new_message').on('submit',function(e){
     e.preventDfault();
+    // console.log(this)
+    // debugger;
     var message = new FormData(this);
     var url = (window.location.href);
 
