@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load',function(){
   function buildHTML(message){
-    var content = message.content ? '${message.content}' : "";
-    var img = message.image? '<img src= ${ message.image }>' :"";
+    var content = message.content ? `${message.content}` : "";
+    var img = message.image? `<img src= ${ message.image }>` :"";
     var html = `<div class="message" data-id="${message.id}">
                   <div class="message__detail">
                     <p class="message__detail__current-user-name">
@@ -18,12 +18,12 @@ $(document).on('turbolinks:load',function(){
                     ${img}
                   </p>
                 </div>`
-    rerturn html;
+    return html;
   }
   
  $('#new_message').on('submit',function(e){
     e.preventDfault();
-    var formdata = new FormData(this);
+    var message = new FormData(this);
     var url = (window.location.href);
 
     $ajax({
@@ -32,7 +32,7 @@ $(document).on('turbolinks:load',function(){
       data: message,
       dataType: 'json',
       processData: false,
-      contentType: false,
+      contentType: false
     })
 
     .done(function(data){
