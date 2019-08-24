@@ -39,7 +39,7 @@ $(document).on('turbolinks:load',function(){
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#message_content').val('');
-      
+
       function scrollBottom(){
         var target = $('.message').last();
         var position = target.offset().top + $('.messages').scrollTop();
@@ -47,6 +47,12 @@ $(document).on('turbolinks:load',function(){
           scrollTop: position
         }, 300, 'swing');
       }
+    })
+    .fail(function(data){
+      alert('エラーが発生したためメッセージは送信できませんでした。');
+    })
+    .always(function(data){
+      $('.submit-btn').prop('disabled', false);
     })
   })
 });
