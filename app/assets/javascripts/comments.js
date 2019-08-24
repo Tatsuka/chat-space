@@ -39,6 +39,14 @@ $(document).on('turbolinks:load',function(){
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#message_content').val('');
+      
+      function scrollBottom(){
+        var target = $('.message').last();
+        var position = target.offset().top + $('.messages').scrollTop();
+        $('.messages').animate({
+          scrollTop: position
+        }, 300, 'swing');
+      }
     })
   })
 });
