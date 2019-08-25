@@ -3,7 +3,6 @@ $(document).on('turbolinks:load',function(){
     var content = message.content ? `${message.content}` : "";
     var img = message.image? `<img src= ${ message.image }>` :"";
     var html = `<div class='message'>
-                  ${message.id}
                   <div class='messege__upper-info'>
                     <div class='messege__upper-info__talker'>
                       ${message.user_name}
@@ -27,9 +26,9 @@ $(document).on('turbolinks:load',function(){
     // console.log(this)
     // debugger;
     var message = new FormData(this);
-    var url = (window.location.href);
+    var url = $(this).attr('action');
 
-    $ajax({
+    $.ajax({
       url: url,
       type:'POST',
       data: message,
@@ -39,17 +38,12 @@ $(document).on('turbolinks:load',function(){
     })
 
     .done(function(data){
+      // console.log(this)
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#message_content').val('');
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
 
-      function scrollBottom(){
-        var target = $('.message').last();
-        var position = target.offset().top + $('.messages').scrollTop();
-        $('.messages').animate({
-          scrollTop: position
-        }, 300, 'swing');
-      }
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');

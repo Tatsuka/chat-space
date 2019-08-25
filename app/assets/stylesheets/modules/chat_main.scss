@@ -89,6 +89,9 @@
     box-sizing: border-box;
     height: 90px;
     padding: 20px 50px 20px 40px;
+    form {
+      display: flex;
+    }
     &__message {
       border: none;
       float: left;
