@@ -23,8 +23,6 @@ $(document).on('turbolinks:load',function(){
   
  $('#new_message').on('submit',function(e){
     e.preventDefault();
-    // console.log(this)
-    // debugger;
     var message = new FormData(this);
     var url = $(this).attr('action');
 
@@ -38,18 +36,19 @@ $(document).on('turbolinks:load',function(){
     })
 
     .done(function(data){
-      // console.log(this)
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#message_content').val('');
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
+      $("#new_message")[0].reset();
+      
 
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');
     })
     .always(function(data){
-      $('.submit-btn').prop('disabled', false);
+      $('.form__submit').prop('disabled', false);
     })
   })
 });
