@@ -17,23 +17,19 @@ $(function() {
       url: '/users',
       data: { keyword: input },
       dataType: 'json'
-
-      .done(function(users) {
-        $(".user-search-result").empty();
-        if (users.length !== 0) {
-          users.forEach(function(user){
-            var html = appendUser(user);
-            $(".user-search-result").append(html);
-          });
-        }
-      })
-
-      .fail(function(){
-        alert('通信に失敗しました');
-      })
-
-
+    })
+    .done(function(users) {
+      $(".user-search-result").empty();
+      if (users.length !== 0) {
+        users.forEach(function(user){
+          var html = appendUser(user);
+          $(".user-search-result").append(html);
+        });
+      }
     })
 
+    .fail(function(){
+      alert('通信に失敗しました');
+    })
   });
 });
