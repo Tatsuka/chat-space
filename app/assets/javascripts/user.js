@@ -5,7 +5,8 @@ $(document).on('turbolinks:load',function(){
                       <p class="chat-group-user__name">${user.name}</p>
                         <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
                     </div>`
-    return html;
+    // return html;
+      $(".user-search-result").append(html);
     };
 
     function appendNoUser(user){
@@ -24,10 +25,12 @@ $(document).on('turbolinks:load',function(){
       })
       .done(function(users) {
         $(".user-search-result").empty();
+        console.log(user)
         if (users.length !== 0) {
           users.forEach(function(user){
-            var html = appendUser(user);
-            $(".user-search-result").append(html);
+            // var html = 
+            appendUser(user);
+            // $(".user-search-result").append(html);
           });
         }
         else {
@@ -41,11 +44,17 @@ $(document).on('turbolinks:load',function(){
 
     function clickHTML(user){
       var userId = user.attr("data-user-id");
-      var html = `<div class='chat-group-user clearfix js-chat-member' id='${userId}'>
-                    <input name='group[user_ids][]' type='hidden' value="${userId}">
-                    <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
-                    <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
-                </div>`
+      var html = `<div class='chat-group-user'>
+                  <input name='group[user_ids][]' type='hidden' value='${userId}'>
+                      <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
+                   <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+                  </div>`
+
+      // `<div class='chat-group-user clearfix js-chat-member' id='${userId}'>
+      //               <input name='group[user_ids][]' type='hidden' value="${userId}">
+      //               <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
+      //               <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+      //           </div>`
       return html;
     };
     $(document).on("click",".user-search-add", function() {
