@@ -37,25 +37,29 @@ $(document).on('turbolinks:load',function(){
       })
     });
 
-    function clickHTML(user){
-      var userId = user.attr("data-user-id");
-      var html = `<div class='chat-group-user'>
-                  <input name='group[user_ids][]' type='hidden' value='${userId}'>
-                      <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
-                   <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
-                  </div>`
-      return html;
-    };
-    $(document).on("click",".user-search-add", function() {
-      $input = $(this);
-      var add_user_html = clickHTML($input);
-      $("#search-users").append(add_user_html);
-        $input.parent().remove();
-    });
+
     
-    $(document).on("click",".js-remove-btn", function() {
-      $input = $(this);
-      $input.parent().remove();
-    });
   });
 });
+
+$(document).on("click",".user-search-add", function() {
+  $(".user-search-add").off()
+  $input = $(this);
+  var add_user_html = clickHTML($input);
+  $("#search-users").append(add_user_html);
+    $input.parent().remove();
+});
+
+$(document).on("click",".js-remove-btn", function() {
+  $input = $(this);
+  $input.parent().remove();
+});
+function clickHTML(user){
+  var userId = user.attr("data-user-id");
+  var html = `<div class='chat-group-user'>
+              <input name='group[user_ids][]' type='hidden' value='${userId}'>
+                  <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
+                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+              </div>`
+  return html;
+};
