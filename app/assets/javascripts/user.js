@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load',function(){ 
  $(function() {
+  var search_list = $(".user-search-result");
     function appendUser(user) {
       var html = ` <div class="chat-group-user clearfix">
                       <p class="chat-group-user__name">${user.name}</p>
@@ -8,7 +9,7 @@ $(document).on('turbolinks:load',function(){
       $(".user-search-result").append(html);
     };
     function appendNoUser(fail_comment){
-      var html = `<div class='chat-group-user clearfix'>${fail_comment}</div>`
+      var html = `<div class='.user-search-result'>${fail_comment}</div>`
       search_list.append(html);
     }
 
@@ -21,7 +22,7 @@ $(document).on('turbolinks:load',function(){
         dataType: 'json'
       })
       .done(function(users) {
-        // $(".user-search-result").empty();
+        $(".user-search-result").empty();
         if (users.length !== 0) {
           users.forEach(function(user){
             appendUser(user);
