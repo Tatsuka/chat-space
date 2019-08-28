@@ -48,7 +48,6 @@ $(document).on('turbolinks:load',function(){
       $('.form__submit').prop('disabled', false);
     })
   })
-  // 自動更新
   var reloadMessages = function () {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       var last_message_id = $('.message:last').data("id"); 
