@@ -1,9 +1,9 @@
-= form_for group do |f|
-  - if group.errors.any?
+= form_for @group do |f|
+  - if @group.errors.any?
     .chat-group-form__errors
-      %h2= "#{group.errors.full_messages.count}件のエラーが発生しました。"
+      %h2= "#{@group.errors.count}件のエラーが発生しました。"
       %ul
-        - group.errors.full_messages.each do |message|
+        - @group.errors.each do |message|
           %li= message
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
@@ -25,7 +25,7 @@
       %label.chat-group-form__label チャットメンバー
     .chat-group-form__field--right
       #search-users
-        - @group.users.each do |group_users|
+        - group.users.each do |group_users|
           .chat-group-user
             %input{name: "group[user_ids][]", type: "hidden", value: "#{group_users.id}" }
             %p.chat-group-user__name
